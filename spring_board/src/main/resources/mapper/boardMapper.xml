@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bbs.mapper.BoardMapper">
+
+	<insert id="insert">
+		insert into board(btitle, bcontent, bwriter) 
+		values(#{btitle}, #{bcontent}, #{bwriter})
+	</insert>
+	
+	<select id="list_all" resultType="com.bbs.model.BoardDTO">
+		select * from board order by bno desc
+	</select>
+	
+	<delete id="delete">
+		delete from board where bno = #{bno}
+	</delete>
+	
+	<select id="boardContent" resultType="com.bbs.model.BoardDTO">
+		select * from board where bno = #{bno}
+	</select>
+	
+	<update id="update">
+		update board set btitle = #{btitle}, bcontent = #{bcontent} 
+		where bno = #{bno}
+	</update>
+
+	<select id="getListPaging" resultType="com.bbs.model.BoardDTO">
+		select * from board limit #{skip}, #{amount}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from board
+	</select>
+
+</mapper>

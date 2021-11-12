@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bbs.mapper.PersonMapper">
+
+	<insert id="insert">
+		insert into person(pname, pphoneNumber, paddress, page, pgender)
+		values(#{pname}, #{pphoneNumber}, #{paddress}, #{page}, #{pgender})
+	</insert>
+
+	<select id="person_list_all" resultType="com.bbs.model.PersonDTO">
+		select * from person order by pno desc
+	</select>
+
+	<select id="personContent" resultType="com.bbs.model.PersonDTO">
+		select * from person where pno = #{pno}
+	</select>
+	
+	<update id="update">
+		update person set pname = #{pname}, pphoneNumber = #{pphoneNumber}, paddress = #{paddress}, page = #{page}, pgender = #{pgender}
+		where pno = #{pno}
+	</update>
+	
+	<delete id="delete">
+		delete from person where pno = #{pno}
+	</delete>
+</mapper>
